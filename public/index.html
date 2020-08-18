@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Alert | Alert</title>
+</head>
+<body>
+    <h1>Cypto Alerts</h1>
+    <form id="form" autocomplete="off">
+        <label for="exchange">Exchange: </label>
+        <select name="exchange" id="exchange">
+            <option value="binance">Binance</option>
+            <option value="bittrex">Bittrex</option>
+            <option value="bitfinex">Bitfinex</option>
+            <option value="bitstamp">Bitstamp</option>
+            <option value="gdax">Coinbase Pro</option>
+            <option value="gemini">Gemini</option>
+            <option value="hitbtc">HitBTC</option>
+            <option value="kraken">Kraken</option>
+            <option value="kucoin">Kucoin</option>
+            <option value="okex">OKEx</option>
+            <option value="poloniex">Poloniex</option>
+        </select>
+
+        <label for="pairs">Pair: </label>
+        <input type="text" list="pair-list" name="pair" id="pair" required >
+        <datalist id="pair-list"></datalist>
+
+        <label for="sign">Sign: </label>
+        <select name="sign" id="sign">
+            <option value="g/t">Greater Than</option>
+            <option value="l/t">Lower Than</option>
+        </select>
+        
+        <input type="text" name="price" placeholder="price" id="price" required>
+
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" placeholder="Enter Email" required>
+
+        <input type="submit" value="submit">
+    </form>
+
+    <div class="alerts">
+
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
