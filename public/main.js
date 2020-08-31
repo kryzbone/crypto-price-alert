@@ -30,7 +30,6 @@ symbol.addEventListener('change', () => {
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-    const { exchange, contact, pair, sign, price } = e.target.children
 
     const data = {
         exchange: exchange.value,
@@ -39,7 +38,7 @@ form.addEventListener('submit', (e) => {
         price: price.value,
         email: email.value
     }
-
+    
     const options = {
         method: "POST",
         headers: {
