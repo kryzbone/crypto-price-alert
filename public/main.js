@@ -5,7 +5,8 @@ const exchange = window['exchange'],
       sign = window['sign'],
       price =window['price'],
       email = window['email'],
-      form = window['form']
+      form = window['form'],
+      loading = window['loading']
 
 let pages, prices = {}, count = 1;
 
@@ -16,7 +17,8 @@ window.onload =  () => {
 }
 
 exchange.addEventListener('change', () => {
-    price.value = ""
+    price.value = "";
+    loading.className = '';
     getPairs()
 })
 
@@ -111,7 +113,7 @@ function fetchPairs(url) {
         //checking and fetching next page data
         if(pages.next) {
             fetchPairs(pages.next) 
-        }
+        }else setTimeout(() => loading.className = 'hide', 1000);
     })
     .catch(err => console.log(err.message)) 
 }

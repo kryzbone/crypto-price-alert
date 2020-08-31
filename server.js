@@ -24,14 +24,6 @@ app.post('/add', (req, res) => {
 } )
 
 
-function lg() {
-    console.log('hello world');
-}
-
-setTimeout(lg) 
-
-
-
 
 
 server.listen(port, ()=> console.log('listening on port' + port))
