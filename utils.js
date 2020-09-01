@@ -1,0 +1,41 @@
+const joi = require('joi');
+const fs = require('fs')
+
+
+// function to check if alert has already been created
+function isDuplicate(user, data) {
+    let exist = false;
+
+    user.forEach(itm => {
+       const v = JSON.stringify(itm) === JSON.stringify(data)
+       if(v) return exist = true
+    })
+    return exist;
+}
+
+
+//function to write file
+function writeFile(filename, data) {
+    fs.writeFile(filename, JSON.stringify(data), (err) => {
+        if(err) console.log('failed')
+    })
+}
+
+
+// fuction to validate data
+function validate(data) {
+    const schema = joi.object({
+        exchange: joi.string().required(),
+        pair: joi.string().required(),
+        sign: joi.string().required(),
+        price: joi.number().required(),
+        email: joi.string().email().required()
+    })
+
+    return schema.validate(data)
+}
+
+
+
+
+module.exports = { isDuplicate, writeFile, validate }
