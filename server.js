@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const server = require('http').createServer(app);
 
 const fs = require('fs');
-const { isDuplicate, writeFile, validate } = require('./utils')
+const { isDuplicate, writeFile, validate } = require('./utils');
+const { getData } = require('./fetch');
 
 
 const port = process.env.PORT || 5000
@@ -69,16 +70,13 @@ app.post('/add', (req, res) => {
         exchanges[de] = 1;
     }
     
-    
-    if ( alerts.length > 1 ) {
-        removeAlert()
-    }
 
-    res.json({
-        al : alerts,
-        ex: exchanges,
-        us: users
-    });
+    if ( alerts.length ) {
+        getData(data.exchange, (data) => {
+            res.json(data)
+        });
+    }
+    
 } )
 
 //Test delete function
@@ -95,8 +93,9 @@ function removeAlert() {
     if( exchanges[exchange] < 1 ) {
         exchanges.list.remove(exchange);
     };
-
 }
+
+
 
 
 server.listen(port, ()=> console.log('listening on port' + port))

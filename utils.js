@@ -1,15 +1,13 @@
 const joi = require('joi');
-const fs = require('fs')
+const fs = require('fs');
 
 
 // function to check if alert has already been created
 function isDuplicate(user, data) {
-    let exist = false;
+    const v = user.find(itm => JSON.stringify(itm) === JSON.stringify(data))
 
-    user.forEach(itm => {
-       const v = JSON.stringify(itm) === JSON.stringify(data)
-       if(v) return exist = true
-    })
+    const exist = v? true : false;
+
     return exist;
 }
 
@@ -34,7 +32,6 @@ function validate(data) {
 
     return schema.validate(data)
 }
-
 
 
 
