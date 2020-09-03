@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const server = require('http').createServer(app);
 
 const fs = require('fs');
+const  getData  = require('./fetch');
 const { isDuplicate, writeFile, validate } = require('./utils');
-const { getData } = require('./fetch');
 
 
 const port = process.env.PORT || 5000
@@ -77,7 +77,9 @@ app.post('/add', (req, res) => {
         });
     }
     
-} )
+})
+
+
 
 //Test delete function
 function removeAlert() {

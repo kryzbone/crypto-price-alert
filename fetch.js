@@ -9,13 +9,13 @@ function getData(exchange, cb) {
     const url = `https://api.coingecko.com/api/v3/exchanges/${exchange}/tickers`;
 
     //fetch exchange market pairs
-     fetchPairs(url, cb);
+     fetchPairs(url, ex = exchange, cb);
 }
 
 
 // Fetching pairs and price
-function fetchPairs(url, cb) {
-
+function fetchPairs(url, ex, cb) {
+    
     fetch(url)
     .then((res) => {
         parseLink(res.headers.get('link'));
@@ -26,25 +26,28 @@ function fetchPairs(url, cb) {
             if(!itm.is_anomaly && !itm.is_stale) {
                 const quote = itm.base + '/' + itm.target;
                 
-                getPrice(itm.last, quote)
+                getPrice(itm.last, quote, ex)
             }   
         }) 
 
         //checking and fetching next page data
         if(pages.next) {
-            fetchPairs(pages.next, cb) 
+            fetchPairs(pages.next, ex, cb) 
         }else cb(prices)
-
     })
     .catch(err => console.log(err.message))   
-
 }        
 
 
 //getting price
-function getPrice(p,q) {
+function getPrice(p,q,x) {
     const num = precise(p)
-    prices[q] = num;
+    if(prices[x]) {
+        prices[x][q]= num;
+    }else {
+        prices[x] = {};
+        prices[x][q] = num;
+    }  
 }
 
 
@@ -64,11 +67,10 @@ function parseLink(s) {
       const [_, v, k] = m;
       output[k] = v;
     }
-  
     pages = output;
 }
 
 
 
 
-module.exports = { getData }
+module.exports = getData 
