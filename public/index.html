@@ -36,6 +36,7 @@
             <option value="l/t">Lower Than</option>
         </select>
         
+        <label for="price">Price: </label>
         <input type="text" name="price" placeholder="price" id="price" required>
 
         <label for="email">Email: </label>
@@ -44,10 +45,23 @@
         <input type="submit" value="submit">
     </form>
 
-    <div class="alerts">
+    <br><br>
 
+    <form id="alert-form"  >
+        <h3>View Alerts By Email</h3>
+        <input type="email" name="email" id="alert-email" placeholder="Enter Email" required>
+
+        <input type="submit" value="submit">
+    </form>
+
+    <br>
+
+    <div id="alerts">
+       
     </div>
 
+
+    <!-- loading page -->
     <div id="loading" class="" >
         <h1>Loading...</h1>
     </div>

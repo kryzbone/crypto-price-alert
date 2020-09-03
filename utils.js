@@ -34,5 +34,26 @@ function validate(data) {
 }
 
 
+//Delete Alert function
+function removeAlert() {
+    const del = alerts[0];
+    const { email, exchange } = del;
 
-module.exports = { isDuplicate, writeFile, validate }
+    //Remove from alerts db
+    const newAlerts = alerts.filter(itm => itm !== del);
+
+    //Remove from uses db
+    users[email] = users[email].filter(itm => itm !== del);
+
+    //Remove from exchanged db
+    exchanges[exchange] -= 1;
+
+    //Remove exchange from list
+    if( exchanges[exchange] < 1 ) {
+        exchanges.list.remove(exchange);
+    };
+}
+
+
+
+module.exports = { isDuplicate, writeFile, validate, removeAlert }

@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const server = require('http').createServer(app);
 
 const fs = require('fs');
-const  getData  = require('./fetch');
+const checkPrice = require('./check');
 const { isDuplicate, writeFile, validate } = require('./utils');
 
 
@@ -21,6 +21,16 @@ const exchanges = fs.existsSync(EXCHANGES)? JSON.parse(fs.readFileSync(EXCHANGES
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded( { extended: true } ))
 app.use(express.json({ limit: '1mb' }))
+
+
+
+app.get('/alerts/:email', (req, res) => {
+    const { email } = req.params;
+
+    const data = users[email] || {}
+
+    res.json(data)
+})
 
 
 
@@ -47,7 +57,6 @@ app.post('/add', (req, res) => {
     // add data to alert db   
     alerts.push(data);
 
-
     //add data to exchange db
     const el = exchanges.list; 
     const de = data.exchange;
@@ -61,7 +70,6 @@ app.post('/add', (req, res) => {
             el.add(de)
             exchanges[de] = 1
         }
-
     }else {
         const list = new Set()
         list.add(de)
@@ -70,32 +78,13 @@ app.post('/add', (req, res) => {
         exchanges[de] = 1;
     }
     
-
+    //for testing
     if ( alerts.length ) {
-        getData(data.exchange, (data) => {
-            res.json(data)
-        });
+        checkPrice(exchanges.list, alerts)
     }
-    
+
+    res.json(data)
 })
-
-
-
-//Test delete function
-function removeAlert() {
-    const del = alerts[0];
-    const { email, exchange } = del;
-
-   const newAlerts = alerts.filter(itm => itm !== del);
-
-   users[email] = users[email].filter(itm => itm !== del);
-
-   exchanges[exchange] -= 1;
-
-    if( exchanges[exchange] < 1 ) {
-        exchanges.list.remove(exchange);
-    };
-}
 
 
 

@@ -9,12 +9,12 @@ function getData(exchange, cb) {
     const url = `https://api.coingecko.com/api/v3/exchanges/${exchange}/tickers`;
 
     //fetch exchange market pairs
-     fetchPairs(url, ex = exchange, cb);
+     fetchPairs(url, cb);
 }
 
 
 // Fetching pairs and price
-function fetchPairs(url, ex, cb) {
+function fetchPairs(url, cb) {
     
     fetch(url)
     .then((res) => {
@@ -26,13 +26,13 @@ function fetchPairs(url, ex, cb) {
             if(!itm.is_anomaly && !itm.is_stale) {
                 const quote = itm.base + '/' + itm.target;
                 
-                getPrice(itm.last, quote, ex)
+                getPrice(itm.last, quote)
             }   
         }) 
 
         //checking and fetching next page data
         if(pages.next) {
-            fetchPairs(pages.next, ex, cb) 
+            fetchPairs(pages.next, cb) 
         }else cb(prices)
     })
     .catch(err => console.log(err.message))   
@@ -40,14 +40,9 @@ function fetchPairs(url, ex, cb) {
 
 
 //getting price
-function getPrice(p,q,x) {
+function getPrice(p,q) {
     const num = precise(p)
-    if(prices[x]) {
-        prices[x][q]= num;
-    }else {
-        prices[x] = {};
-        prices[x][q] = num;
-    }  
+    prices[q]= num;  
 }
 
 
