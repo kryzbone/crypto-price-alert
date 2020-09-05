@@ -11,6 +11,6 @@
     align-items: center;
 }
 
-#loading.hide {
-    display: none;
+.hide {
+    display: none !important; 
 }

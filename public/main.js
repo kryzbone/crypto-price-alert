@@ -65,7 +65,7 @@ alertForm.addEventListener("submit", (e) => {
     .then((data) => {
       const alertBox = window["alerts"];
 
-      if (JSON.stringify(data) === "{}") {
+      if ( data.length === 0 ) {
         alertBox.innerHTML = "<p>You Have no Alerts</p>";
       } else {
         alertBox.innerHTML = "";
@@ -82,6 +82,7 @@ alertForm.addEventListener("submit", (e) => {
           alertBox.appendChild(p);
         });
       }
+      window['clear'].className = "";
     })
     .catch((err) => {
       console.log(err);
@@ -89,6 +90,13 @@ alertForm.addEventListener("submit", (e) => {
 
     alertEmail.value = ""
 });
+
+//Hide clear Button
+window['clear'].addEventListener('click', (e) => {
+  window['alerts'].innerHTML = "";
+  e.target.className = "hide"
+} )
+
 
 //FUNCTIONS
 function getPairs() {
@@ -146,7 +154,10 @@ function fetchPairs(url) {
         fetchPairs(pages.next);
       } else setTimeout(() => (loading.className = "hide"), 1000);
     })
-    .catch((err) => console.log(err.message));
+    .catch((err) => {
+      loading.className = "hide" 
+      console.log(err.message)
+    });
 }
 
 //convert exponential values to decimals

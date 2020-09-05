@@ -14,9 +14,7 @@ function isDuplicate(user, data) {
 
 //function to write file
 function writeFile(filename, data) {
-    fs.writeFile(filename, JSON.stringify(data), (err) => {
-        if(err) console.log('failed')
-    })
+    fs.writeFileSync(filename, JSON.stringify(data))
 }
 
 
@@ -34,26 +32,6 @@ function validate(data) {
 }
 
 
-//Delete Alert function
-function removeAlert() {
-    const del = alerts[0];
-    const { email, exchange } = del;
-
-    //Remove from alerts db
-    const newAlerts = alerts.filter(itm => itm !== del);
-
-    //Remove from uses db
-    users[email] = users[email].filter(itm => itm !== del);
-
-    //Remove from exchanged db
-    exchanges[exchange] -= 1;
-
-    //Remove exchange from list
-    if( exchanges[exchange] < 1 ) {
-        exchanges.list.remove(exchange);
-    };
-}
 
 
-
-module.exports = { isDuplicate, writeFile, validate, removeAlert }
+module.exports = { isDuplicate, writeFile, validate }
