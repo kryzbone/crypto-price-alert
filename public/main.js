@@ -52,7 +52,14 @@ form.addEventListener("submit", (e) => {
 
   fetch("/add", options)
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+      const box = window['msg-box'];
+      box.innerText = data;
+      box.className = "show";
+      setTimeout(() => {
+        box.className = ''
+      }, 3500)
+    })
     .catch((err) => console.log(err.message));
 });
 

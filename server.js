@@ -102,7 +102,7 @@ app.post("/add", (req, res) => {
   writeFile(DB, db);
 
 
-  res.sendStatus(201);
+  res.status(201).json('Alert Created');
 });
 
 
