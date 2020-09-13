@@ -3,67 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Price Alert | Alert</title>
+    <title>Price Alert | Crypto </title>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Cypto Alerts</h1>
-    <div id="msg-box" ></div>
+    <div class="container">
+        <h1>Cypto Alerts</h1>
+        <div id="msg-box" ></div>
 
-    <form id="form" autocomplete="off">
-        <label for="exchange">Exchange: </label>
-        <select name="exchange" id="exchange">
-            <option value="binance">Binance</option>
-            <option value="bittrex">Bittrex</option>
-            <option value="bitfinex">Bitfinex</option>
-            <option value="bitstamp">Bitstamp</option>
-            <option value="gdax">Coinbase Pro</option>
-            <option value="gemini">Gemini</option>
-            <option value="hitbtc">HitBTC</option>
-            <option value="kraken">Kraken</option>
-            <option value="kucoin">Kucoin</option>
-            <option value="okex">OKEx</option>
-            <option value="poloniex">Poloniex</option>
-        </select>
+        <form id="form" autocomplete="off">
+            <h3>Set Alert</h3>
+            <section id="sec-1">
+                <div>
+                    <label for="exchange">Exchange: </label>
+                    <select name="exchange" id="exchange">
+                        <option value="binance">Binance</option>
+                        <option value="bittrex">Bittrex</option>
+                        <option value="bitfinex">Bitfinex</option>
+                        <option value="bitstamp">Bitstamp</option>
+                        <option value="gdax">Coinbase Pro</option>
+                        <option value="gemini">Gemini</option>
+                        <option value="hitbtc">HitBTC</option>
+                        <option value="kraken">Kraken</option>
+                        <option value="kucoin">Kucoin</option>
+                        <option value="okex">OKEx</option>
+                        <option value="poloniex">Poloniex</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="pairs">Pair: </label>
+                    <input type="text" list="pair-list" name="pair" id="pair" required >
+                    <datalist id="pair-list"></datalist>
+                </div>
+            </section>
+            <section id="sec-2" >
+                <div>
+                    <label for="sign">Sign: </label>
+                    <select name="sign" id="sign">
+                        <option value="g/t">Greater Than</option>
+                        <option value="l/t">Lower Than</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="price">Price: </label>
+                    <input type="text" name="price" placeholder="price" id="price" required>
+                </div>
+            </section>
+            <section id="sec-3" >
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="email" placeholder="Enter Email" required>
+            </section>
+            <input type="submit" id="alert-btn" value="submit">
+        </form>
 
-        <label for="pairs">Pair: </label>
-        <input type="text" list="pair-list" name="pair" id="pair" required >
-        <datalist id="pair-list"></datalist>
+    
 
-        <label for="sign">Sign: </label>
-        <select name="sign" id="sign">
-            <option value="g/t">Greater Than</option>
-            <option value="l/t">Lower Than</option>
-        </select>
-        
-        <label for="price">Price: </label>
-        <input type="text" name="price" placeholder="price" id="price" required>
+        <form id="alert-form" >
+            <input type="email" name="email" id="alert-email" placeholder="Search Alerts With Email" required>
+            <input type="submit" id="search-btn" value="Search">
+        </form>
 
-        <label for="email">Email: </label>
-        <input type="email" name="email" id="email" placeholder="Enter Email" required>
 
-        <input type="submit" value="submit">
-    </form>
+        <div id="alerts"></div>
 
-    <br><br>
-
-    <form id="alert-form" >
-        <h3>View Alerts By Email</h3>
-        <input type="email" name="email" id="alert-email" placeholder="Enter Email" required>
-
-        <input type="submit" value="submit">
-    </form>
-
-    <br>
-
-    <div id="alerts"></div>
-
-    <br>
-
-    <button id="clear" class="hide" >Clear</button>
-
+        <button id="clear" class="hide" >Clear</button>
+    </div>
 
     <!-- loading page -->
     <div id="loading" class="" >

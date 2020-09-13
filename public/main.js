@@ -73,20 +73,23 @@ alertForm.addEventListener("submit", (e) => {
       const alertBox = window["alerts"];
 
       if ( data.length === 0 ) {
-        alertBox.innerHTML = "<p>You Have no Alerts</p>";
+        alertBox.innerHTML = `<p id="no-alert" >You Have no Alerts</p>`;
       } else {
         alertBox.innerHTML = "";
 
-        data.forEach((itm, i) => {
-          const p = document.createElement("p");
+        data.forEach((itm) => {
+          const alert = `
+          <div id="alert" >
+            <h4>${itm.exchange}</h4>
+            <p>
+                pair:  <span>${itm.pair}</span>
+                Target:  <span>${itm.sign === "g/t" ? "Above" : "Below"}</span> 
+                <span>${itm.price} ${itm.pair.split("/")[1]}</span>
+            </p>
+          </div>
+          `
 
-          p.textContent = `${i+1}. Alert Target: If price is ${
-            itm.sign === "g/t" ? "Greater Than" : "Lower Than"
-          }  ${itm.price} ${itm.pair.split("/")[1]}; Exchange: ${
-            itm.exchange
-          }; Pair: ${itm.pair}   `;
-
-          alertBox.appendChild(p);
+          alertBox.innerHTML += alert;
         });
       }
       window['clear'].className = "";

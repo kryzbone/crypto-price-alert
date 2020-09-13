@@ -1,38 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+    --blue: #007FFF;
+}
+
 * {
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
     width: 90vw;
     margin: 0 auto;
+    background: url(images/bg.jpg) no-repeat fixed center;
 }
 
 h1 {
     margin-bottom: 0;
+    color: #fff;
+    font-style: italic;
+    letter-spacing: .2rem;
+    text-align: center;
 }
 
-#loading {
+/* form styles */
+
+#form {
+    max-width: 500px;
+    background:  #ccc;
+    margin: 0 auto 1rem;
+    padding: 1rem;
+    border-radius: .2rem;
+
+    opacity: 0.9;
+}
+
+#form h3 {
+    text-align: center;
+    letter-spacing: .1rem;
+    margin: 0;
+}
+
+label {
+    display : block;
+    font-size: large;
+}
+
+section {
+    display: flex;
+}
+
+section div {
+    width: 50%;
+    padding: 0.4rem;
+    margin: 0 .2rem .2rem 0;
+
+}
+
+#sec-3 {
+    display: block;
+    padding: 0.4rem;
+    margin: 0 .2rem .2rem 0;
+}
+
+#alert-btn {
+    display: block;
+    width: 25%;
+    margin: 0 auto;
+    padding: .2rem;
+    background: var(--blue);
+
+    border: 1px solid gray;
+    border-radius: .2rem;
+    cursor: pointer;
+}
+
+#exchange, #pair, #sign, #price, #email {
+    width: 100%;
+    padding: .2rem;
+    border-radius: .2rem;
+    border: 1px solid rgb(71, 71, 71);
+    outline: 0;
+}
+
+/* Search box styles */
+#alert-form {
+    max-width: 500px;
+    margin: 0 auto .5rem;
+    padding: .2rem;
+    display: flex;
+    border: 1px solid rgb(0, 140, 255);
+    border-radius: .2rem;
+    
+    position: relative;
+    background: #fff;
+    opacity: .9;
+}
+
+#alert-email {
+    background: 0;
+    border: 0;
+    outline: 0;
+    flex: 1;
+
+    padding: .3rem;
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+#alert-email::placeholder {
+    font-weight: 600;
+    letter-spacing: .1rem;
+    font-size: .9rem;
+    font-style: italic;
+}
+
+#search-btn {
+    background: var(--blue);
+    border: 0;
+    border-radius: .15rem;
+    color: #fff;
+    cursor: pointer;
+
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: .3rem;
+    vertical-align: middle;
+    padding: .2rem 1rem;
+    margin: auto 0;
+}
+
+
+
+/* Alert Box */
+#alerts {
+    max-width: 500px;
+    margin: 0 auto 1rem;
+}
+
+#alert {
+    background-color: rgb(233, 233, 233);
+    padding: .5rem;
+    margin-bottom: .3rem;
+    overflow: hidden;
+
+    border-left: 5px solid var(--blue);
+    border-radius: .1rem;
+}
+
+#alert p, #alert h4 {
+    margin: 0;
+    text-transform: capitalize;
+}
+
+#alert p {
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+#alert span {
+    font-weight: 550;
+    margin: 0 .3rem;
+}
+
+#no-alert {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.7;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+/* Clera button */
+#clear {
+    width: 15%;
+    display: block;
+    margin: 0 auto .5rem;
+    padding: .2rem 1rem;
+
+    border: 1px solid black;
+    border-radius: .2rem;
+}
+
+#clear:hover {
+    background: 0;
+    color: #fff;
+    border: 1px solid #ccc;
+}
+
+
+/* message Box */
+#msg-box {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 550;
+    letter-spacing: 2px;
+    padding: .2rem 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out ;
+
+    max-width: 500px;
+    margin: 0 auto .2rem;
+    border-radius: .2rem;
+    color: #fff;
+    background: var(--blue);
+}
+
+/* loading page */
+#loading {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5); 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5) no-repeat fixed center; 
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#msg-box {
-    text-align: center;
-    font-size: 1.2rem;
-    font-family: monospace;
-    font-weight: 600;
-    padding: .5rem 0;
-    opacity: 0;
-    transition: opacity 1s ease-in-out ;
-}
 
 .hide {
     display: none !important; 
