@@ -177,7 +177,7 @@ section div {
     width: 15%;
     display: block;
     margin: 0 auto .5rem;
-    padding: .2rem 1rem;
+    padding: .2rem auto;
 
     border: 1px solid black;
     border-radius: .2rem;
